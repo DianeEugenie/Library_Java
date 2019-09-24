@@ -15,4 +15,10 @@ public class Library {
     public int bookCount() {
         return this.books.size();
     }
+
+    public void addBook(Book book) {
+        if (this.bookCount() < this.capacity) {
+            this.books.add(book);
+        }
+    }
 }

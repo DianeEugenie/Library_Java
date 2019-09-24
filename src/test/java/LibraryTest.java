@@ -13,8 +13,8 @@ public class LibraryTest {
 
     @Before
     public void before(){
-        library = new Library("Hogwarts Library", 100);
-        //book = new Book("Fantastic Beasts And Where To Find Them", "Newt Scamander", "Magizoology");
+        library = new Library("Hogwarts Library", 2);
+        book = new Book("Fantastic Beasts And Where To Find Them", "Newt Scamander", "Magizoology");
     }
 
     @Test
@@ -31,8 +31,11 @@ public class LibraryTest {
         //Give we have a library
         assertNotNull(library);
         //AND we have a book
+        assertNotNull(book);
         //When book is added to library
+        library.addBook(book);
         //Then library has 1 book
+        assertEquals(1, library.bookCount());
     }
 
 
