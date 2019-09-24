@@ -9,12 +9,18 @@ public class LibraryTest {
 
     Library library;
     Book book;
-    //Borrower borrower;
+    Book book2;
+    Book book3;
+    Book book4;
+
 
     @Before
     public void before(){
-        library = new Library("Hogwarts Library", 2);
+        library = new Library("Hogwarts Library", 4);
         book = new Book("Fantastic Beasts And Where To Find Them", "Newt Scamander", "Magizoology");
+        book2 = new Book("The Standard Book of Spells Year 1", "Miranda Goshawk", "Charms");
+        book3 = new Book("Achievements in Charming", "Miranda Goshawk", "Charms");
+        book4 = new Book("The Dark Forces: A Guide To Self-Protection", "Quentin Trimble", "Defence Against The Dark Arts");
     }
 
     @Test
@@ -42,13 +48,15 @@ public class LibraryTest {
     public void canAddBook__IfStockFull(){
         //Given we have a library
         assertNotNull(library);
-        //AND our stock is full (capacity 2)
+        //AND our stock is full (capacity 4)
         library.addBook(book);
-        library.addBook(book);
+        library.addBook(book2);
+        library.addBook(book3);
+        library.addBook(book4);
         //When book is added to library
         library.addBook(book);
-        //Then library still has stock 2;
-        assertEquals(2, library.bookCount());
+        //Then library still has stock 4;
+        assertEquals(4, library.bookCount());
     }
 
     @Test
@@ -61,6 +69,23 @@ public class LibraryTest {
         library.removeBook();
         //Then Library has no stock;
         assertEquals(0, library.bookCount());
+    }
+
+
+    @Test
+    public void canTrackBooksByGenre(){
+        //Given we have a library
+        assertNotNull(library);
+        //AND the library has several books
+        library.addBook(book);
+        library.addBook(book2);
+        library.addBook(book3);
+        library.addBook(book4);
+        //When we check the books by genre
+        library.checkGenre("Charms");
+        //Then we should get returned a HashMap of key (genre) value pairs (number)
+        assertEquals(3, library.genreCounterCount());
+        assertEquals(2, library.checkGenre("Charms"));
     }
 
 
