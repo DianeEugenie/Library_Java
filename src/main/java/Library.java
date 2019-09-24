@@ -22,24 +22,35 @@ public class Library {
     public void addBook(Book book) {
         if (this.bookCount() < this.capacity) {
             this.books.add(book);
-            if (!this.genreCounter.containsKey(book.getGenre())) {
-                this.genreCounter.put(book.getGenre(), 1);
-            } else {
-                String genre = book.getGenre();
-                Integer count = this.genreCounter.get(genre);
-                this.genreCounter.put(book.getGenre(), count + 1);
-            }
+            this.keepTrack();
         }
     }
 
     public Book removeBook() {
+        Book removedBook = null;
+
         if (this.bookCount() >= 1) {
-            return this.books.remove(0);
+            removedBook = this.books.remove(0);
+            this.keepTrack();
         }
 
-        return null;
+        return removedBook;
     }
 
+    public void keepTrack() {
+        //needed to reset genreCounter otherwise genreCounter keeps adding to values
+        this.genreCounter.clear();
+
+        for (Book book: this.books) {
+
+            if (this.genreCounter.containsKey(book.getGenre())) {
+                Integer value = this.genreCounter.get(book.getGenre());
+                this.genreCounter.put(book.getGenre(), value + 1);
+            } else {
+                this.genreCounter.put(book.getGenre(), 1);
+            }
+        }
+    }
 
     public int genreCounterCount() {
         return this.genreCounter.size();
@@ -47,6 +58,10 @@ public class Library {
 
 
     public int checkGenre(String input) {
-        return this.genreCounter.get(input);
+        if (this.genreCounter.containsKey(input)) {
+            return this.genreCounter.get(input);
+        } else {
+            return 0;
+        }
     }
 }

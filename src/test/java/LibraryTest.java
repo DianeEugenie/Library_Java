@@ -81,11 +81,29 @@ public class LibraryTest {
         library.addBook(book2);
         library.addBook(book3);
         library.addBook(book4);
-        //When we check the books by genre
-        library.checkGenre("Charms");
-        //Then we should get returned a HashMap of key (genre) value pairs (number)
+        //When
+        //Then we should have a genreCounter with book genres and their count
         assertEquals(3, library.genreCounterCount());
         assertEquals(2, library.checkGenre("Charms"));
+    }
+
+    @Test
+    public void updateTrackBooksByGenre__WhenBookRemoved(){
+        //Given we have a library
+        assertNotNull(library);
+        //AND the library has several books
+        library.addBook(book); // genre Magizoology
+        library.addBook(book2); // genre Charms
+        library.addBook(book3); // genre Charms
+        library.addBook(book4); // genre DADA
+        //AND one book is removed;
+        library.removeBook();
+        //Then we should have gone down in genre
+        assertEquals(2, library.genreCounterCount());
+        //AND down in book count
+        assertEquals(3, library.bookCount());
+        //AND there should be no more book of genre Magizoology
+        assertEquals(0, library.checkGenre("Magizoology"));
     }
 
 
