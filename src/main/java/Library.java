@@ -21,4 +21,12 @@ public class Library {
             this.books.add(book);
         }
     }
+
+    public Book removeBook() {
+        if (this.bookCount() >= 1) {
+            return this.books.remove(0);
+        }
+
+        return null;
+    }
 }
