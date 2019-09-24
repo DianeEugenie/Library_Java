@@ -96,7 +96,7 @@ public class LibraryTest {
         library.addBook(book2); // genre Charms
         library.addBook(book3); // genre Charms
         library.addBook(book4); // genre DADA
-        //AND one book is removed;
+        //When one book is removed;
         library.removeBook();
         //Then we should have gone down in genre
         assertEquals(2, library.genreCounterCount());
