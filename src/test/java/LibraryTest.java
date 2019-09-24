@@ -38,6 +38,19 @@ public class LibraryTest {
         assertEquals(1, library.bookCount());
     }
 
+    @Test
+    public void canAddBook__IfStockFull(){
+        //Give we have a library
+        assertNotNull(library);
+        //AND our stock is full (capacity 2)
+        library.addBook(book);
+        library.addBook(book);
+        //When book is added to library
+        library.addBook(book);
+        //Then library still has stock 2;
+        assertEquals(2, library.bookCount());
+    }
+
 
 
 }
