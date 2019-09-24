@@ -8,9 +8,11 @@ public class BorrowerTest {
 
     Borrower borrower;
     Book book;
+    Library library;
 
     @Before
     public void before(){
+        library = new Library("Hogwarts Library", 2);
         borrower = new Borrower("Luna");
         book = book = new Book("Fantastic Beasts And Where To Find Them", "Newt Scamander", "Magizoology");
     }
@@ -24,6 +26,18 @@ public class BorrowerTest {
         //When borrower goes to library
         //Borrower has no book in collection
         assertEquals(0, borrower.collectionCount());
+    }
+
+    @Test
+    public void canAddBookToCollection(){
+        //Given we have a borrower
+        assertNotNull(borrower);
+        //AND we have a book
+        assertNotNull(book);
+        //When borrower takes a book
+        borrower.addBookToCollection(book);
+        //Then borrower has 1 book in collection
+        assertEquals(1, borrower.collectionCount());
     }
 
 
