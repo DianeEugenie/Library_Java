@@ -26,6 +26,15 @@ public class LibraryTest {
         assertEquals(0, library.bookCount());
     }
 
+    @Test
+    public void canAddBook(){
+        //Give we have a library
+        assertNotNull(library);
+        //AND we have a book
+        //When book is added to library
+        //Then library has 1 book
+    }
+
 
 
 }
