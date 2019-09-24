@@ -23,13 +23,11 @@ public class Library {
         if (this.bookCount() < this.capacity) {
             this.books.add(book);
             if (!this.genreCounter.containsKey(book.getGenre())) {
-                String genre = book.getGenre();
-                Integer count = 1;
-                this.genreCounter.put(genre, count);
+                this.genreCounter.put(book.getGenre(), 1);
             } else {
                 String genre = book.getGenre();
                 Integer count = this.genreCounter.get(genre);
-                this.genreCounter.put(genre, count + 1);
+                this.genreCounter.put(book.getGenre(), count + 1);
             }
         }
     }
