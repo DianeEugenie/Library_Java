@@ -19,10 +19,10 @@ public class Borrower {
     }
 
 
-//    public void takeBook(Library library) {
-//        if (library.bookCount() > 0) {
-//            Book borrowedBook = library.removeBook();
-//            this.collection
-//        }
-//    }
+    public void takeBook(Library library) {
+        if (library.bookCount() > 0) {
+            Book borrowedBook = library.removeBook();
+            this.addBookToCollection(borrowedBook);
+        }
+    }
 }

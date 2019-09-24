@@ -40,6 +40,21 @@ public class BorrowerTest {
         assertEquals(1, borrower.collectionCount());
     }
 
+    @Test
+    public void canTakeBookFromLibrary(){
+        //Given we have a borrower
+        assertNotNull(borrower);
+        //AND a library
+        assertNotNull(library);
+        //AND a book in the library
+        library.addBook(book);
+        //When borrower takes a book from the library
+        borrower.takeBook(library);
+        //Then library has no books left in collection
+        assertEquals(0, library.bookCount());
+
+    }
+
 
 
 }
